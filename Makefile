@@ -1,9 +1,23 @@
 
 # vim: tabstop=8
 
-obj-m := f_mdlm.o
+usb_f_mdlm-y := f_mdlm.o
+obj-m := usb_f_mdlm.o
 
 all:
+
+modules:
+	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
+
+install:
+	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules_install
+	
+clean:
+	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
+	
+
+
+
 
 # prep
 prep:
@@ -26,7 +40,6 @@ config:
 	gadgetconfig --verbose --add /etc/gadgetservice/mdlm-15ec-f101.json ;
 	sysfstree --gadget
 
-
-test:
-	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
+unload:
+	gadgetconfig --verbose --disable --remove-all
 
