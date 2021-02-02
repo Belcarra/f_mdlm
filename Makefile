@@ -7,6 +7,7 @@ all:
 # prep
 prep:
 	# commands needed to prep kernel
+	sudo apt install raspberrypi-kernel-headers
 
 # build usb_f_mdlm.ko
 build:
@@ -14,11 +15,14 @@ build:
 
 # test load usb_f_mdlm.ko
 load:
-	insmod drivers/usb/gadget/function/usb_f_mdlm.ko
+	sudo insmod drivers/usb/gadget/function/usb_f_mdlm.ko
 
 
 config:
 	gadgetconfig --verbose --add /etc/gadgetservice/mdlm-15ec-f101.json ;
 	sysfstree --gadget
 
+
+test:
+	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
 
