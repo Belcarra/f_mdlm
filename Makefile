@@ -1,6 +1,7 @@
 
 # vim: tabstop=8
 
+obj-m := f_mdlm.o
 
 all:
 
@@ -8,6 +9,9 @@ all:
 prep:
 	# commands needed to prep kernel
 	sudo apt install raspberrypi-kernel-headers
+	#sudo apt update
+	#sudo apt install raspberrypi-kernel
+	#sudo apt install linux-image-rpi-rpfv linux-headers-rpi-rpfv
 
 # build usb_f_mdlm.ko
 build:
@@ -15,7 +19,7 @@ build:
 
 # test load usb_f_mdlm.ko
 load:
-	sudo insmod drivers/usb/gadget/function/usb_f_mdlm.ko
+	sudo insmod f_mdlm.ko
 
 
 config:
