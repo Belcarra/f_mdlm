@@ -1,0 +1,30 @@
+#!/bin/sh
+# Created from mdlm-safe-15ec-f101.json
+
+# Usage: manufacturer=$1 scriptname.sh
+
+mkdir -p "/sys/kernel/config/usb_gadget/MDLM-SAFE"
+echo "${idVendor:-0x15ec}" > "/sys/kernel/config/usb_gadget/MDLM-SAFE/idVendor"
+echo "${idProduct:-0xf101}" > "/sys/kernel/config/usb_gadget/MDLM-SAFE/idProduct"
+echo "${bcdDevice:-0x0001}" > "/sys/kernel/config/usb_gadget/MDLM-SAFE/bcdDevice"
+echo "${bDeviceClass:-0x00}" > "/sys/kernel/config/usb_gadget/MDLM-SAFE/bDeviceClass"
+echo "${bDeviceSubClass:-0x00}" > "/sys/kernel/config/usb_gadget/MDLM-SAFE/bDeviceSubClass"
+echo "${bDeviceProtocol:-0x00}" > "/sys/kernel/config/usb_gadget/MDLM-SAFE/bDeviceProtocol"
+echo "${bcdUSB:-0x0200}" > "/sys/kernel/config/usb_gadget/MDLM-SAFE/bcdUSB"
+echo "${bMaxPacketSize0:-0x40}" > "/sys/kernel/config/usb_gadget/MDLM-SAFE/bMaxPacketSize0"
+mkdir -p "/sys/kernel/config/usb_gadget/MDLM-SAFE/strings/0x409"
+echo "${serialnumber:-1000000044142478}" > "/sys/kernel/config/usb_gadget/MDLM-SAFE/strings/0x409/serialnumber"
+echo "${product:-CDC MDLM-SAFE}" > "/sys/kernel/config/usb_gadget/MDLM-SAFE/strings/0x409/product"
+echo "${manufacturer:-Belcarra}" > "/sys/kernel/config/usb_gadget/MDLM-SAFE/strings/0x409/manufacturer"
+mkdir -p "/sys/kernel/config/usb_gadget/MDLM-SAFE/functions/mdlm.usb0"
+echo "${mdlm:-SAFE}" > "/sys/kernel/config/usb_gadget/MDLM-SAFE/functions/mdlm.usb0/mdlm"
+echo "${crc:-y}" > "/sys/kernel/config/usb_gadget/MDLM-SAFE/functions/mdlm.usb0/crc"
+echo "${qmult:-5}" > "/sys/kernel/config/usb_gadget/MDLM-SAFE/functions/mdlm.usb0/qmult"
+echo "${host_addr:-b6:fe:ea:86:2a:50}" > "/sys/kernel/config/usb_gadget/MDLM-SAFE/functions/mdlm.usb0/host_addr"
+echo "${dev_addr:-4e:28:20:f0:35:ab}" > "/sys/kernel/config/usb_gadget/MDLM-SAFE/functions/mdlm.usb0/dev_addr"
+mkdir -p "/sys/kernel/config/usb_gadget/MDLM-SAFE/configs/Belcarra MDLM-SAFE.1"
+echo "${bmAttributes:-0x80}" > "/sys/kernel/config/usb_gadget/MDLM-SAFE/configs/Belcarra MDLM-SAFE.1/bmAttributes"
+echo "${MaxPower:-2}" > "/sys/kernel/config/usb_gadget/MDLM-SAFE/configs/Belcarra MDLM-SAFE.1/MaxPower"
+mkdir -p "/sys/kernel/config/usb_gadget/MDLM-SAFE/configs/Belcarra MDLM-SAFE.1/strings/0x409"
+echo "${configuration:-CDC MDLM-SAFE}" > "/sys/kernel/config/usb_gadget/MDLM-SAFE/configs/Belcarra MDLM-SAFE.1/strings/0x409/configuration"
+ln -s "/sys/kernel/config/usb_gadget/MDLM-SAFE/functions/mdlm.usb0" "/sys/kernel/config/usb_gadget/MDLM-SAFE/configs/Belcarra MDLM-SAFE.1/mdlm.usb0"

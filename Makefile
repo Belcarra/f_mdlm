@@ -7,13 +7,14 @@ obj-m := usb_f_mdlm.o
 all:
 
 modules:
-	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
+	sudo make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
 
 install:
-	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules_install
+	sudo make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules_install
+	sudo depmod -A
 	
 clean:
-	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
+	sudo make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
 	
 
 
